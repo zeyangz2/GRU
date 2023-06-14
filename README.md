@@ -10,48 +10,61 @@ Uncomment the lines in run.py to save your predicted results.
 Use this jupyter notebook to get a 3D graph of predicted trajectory. You can use the results I got from file: saved test&predict results
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/zeyangz2/LSTM/blob/master/3D%20graph%20LSTM%20results.ipynb)
 
-Since LSTM is good for point by point prediction but not good for long sequence prediction, we use another model called Informer to do long sequence prediction.
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/zeyangz2/LSTM/blob/master/Informer_for_stroke_research.ipynb)
+Model architecture:
 
-To use Informer, you must need to add a date column and put the feaeture that you want to predict to the rightmost column in your data file(.scv file). Right now, Informer gives proper predicted results but still not good enough.
+![model](https://github.com/zeyangz2/GRU/assets/73300066/95a95957-fd1a-4b7d-9d37-0f9272e9f271)
 
-Make sure to edit the sample data in trial2.csv before using Informer to train the network.
-
-Architecture of LSTM model (the number of inputs given to the model could change depending on how many inputs we want to use to train the model):
-
-![model](https://github.com/zeyangz2/LSTM/assets/73300066/801da6f7-11a1-4b94-bb89-f78f34086115)
 
 results:
 
-red line for ground truth and green line for our prediction
+# 3D prediction graph
+(red line for ground truth and green line for our prediction)
 
-![3D result](https://github.com/zeyangz2/LSTM/assets/73300066/567839c0-16eb-4870-8e89-90343fa5423b)
+![3d](https://github.com/zeyangz2/GRU/assets/73300066/05d50f9c-c96f-473a-a1e5-2026ea215c0c)
+
+
+
 
 ## **z_axis:**
 
-![result_z](https://github.com/zeyangz2/LSTM/assets/73300066/e4a386d9-3d7d-46bc-b2ee-57cbad2cc750)
+![results_2_try](https://github.com/zeyangz2/GRU/assets/73300066/49d33d09-217f-4c70-b9b8-a3f85d53656e)
+
 
 **z_axis model loss:**
 
-![Model Loss z](https://github.com/zeyangz2/LSTM/assets/73300066/cf8b165b-11d7-4b07-bf97-91d8ae930024)
+point by point prediction test loss: 
+mae:  21.149654617941962
+
+![Model Loss](https://github.com/zeyangz2/GRU/assets/73300066/9c3f64d2-d98c-4fd6-8b07-92b4bd765c18)
+
 
 
 ## **y_axis:**
 
-![results_y](https://github.com/zeyangz2/LSTM/assets/73300066/8902b71a-0f5a-4329-9964-554f8a639a62)
+![results_2_try](https://github.com/zeyangz2/GRU/assets/73300066/f337d2c2-c405-412b-a93e-e7de0e8f2198)
+
 
 **y_axis model loss:**
 
-![Model Loss y](https://github.com/zeyangz2/LSTM/assets/73300066/00481fb4-db25-4b21-a9e7-a17d4dc4da6a)
+point by point prediction test loss: 
+mae:  34.590864224617455
+
+![Model Loss](https://github.com/zeyangz2/GRU/assets/73300066/ec06b321-b249-436c-8f76-3377829e9988)
+
 
 
 ## **x_axis:**
 
-![results_x](https://github.com/zeyangz2/LSTM/assets/73300066/7b59c058-e4d3-4e12-a590-9ef38c316835)
+![results_2_try](https://github.com/zeyangz2/GRU/assets/73300066/e868b396-a959-461b-b334-6efcbc46a000)
+
 
 **x_axis model loss:**
 
-![Model Loss x](https://github.com/zeyangz2/LSTM/assets/73300066/ebb09931-97cb-4294-9342-2363734c9429)
+point by point prediction test loss: 
+mae:  20.647305644118134
+
+![Model Loss](https://github.com/zeyangz2/GRU/assets/73300066/cea4e4d7-ec36-449d-80c7-bee7f2b6f54f)
+
 
 more updates later...
 
