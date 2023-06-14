@@ -31,6 +31,10 @@ def plot_results_multiple(predicted_data, true_data, prediction_len):
     #plt.show()
     plt.savefig('results_multiple_try.png')
 
+def eva(y_test, pred_test):
+    test_mae = np.mean(np.abs(y_test - pred_test))
+    print('mae: ', test_mae)
+
 #RNN time series
 def main():
     #get hyperparameters from json
@@ -84,6 +88,9 @@ def main():
     
     plot_results_multiple(predictions_multiseq, y_test, configs['data']['sequence_length'])
     plot_results(predictions_pointbypoint, y_test)
+
+    print("point by point prediction test loss: ")
+    eva(y_test, predictions_pointbypoint)
 
 
     

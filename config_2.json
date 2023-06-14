@@ -12,43 +12,41 @@
 			" Recovery Factor",
 			" Assistance Level"
 		],
-		"sequence_length": 20,
+		"sequence_length": 5,
 		"train_test_split": 0.85,
 		"normalise": false
 	},
 	"training": {
-		"epochs": 100,
-		"batch_size": 32
+		"epochs": 150,
+		"batch_size": 10
 	},
 	"model": {
-		"loss": "mse",
+		"loss": "mean_squared_error",
 		"optimizer": "adam",
 		"save_dir": "saved_models",
 		"layers": [
 			{
-				"type": "lstm",
+				"type": "gru",
 				"neurons": 100,
-				"input_timesteps": 19,
-				"input_dim": 9,
 				"return_seq": true
 			},
 			{
 				"type": "dropout",
-				"rate": 0.05
+				"rate": 0.5
 			},
 			{
-				"type": "lstm",
+				"type": "gru",
 				"neurons": 100,
 				"return_seq": true
 			},
 			{
-				"type": "lstm",
+				"type": "gru",
 				"neurons": 100,
 				"return_seq": false
 			},
 			{
 				"type": "dropout",
-				"rate": 0.05
+				"rate": 0.5
 			},
 			{
 				"type": "dense",

@@ -4,13 +4,14 @@ import numpy as np
 import datetime as dt
 from numpy import newaxis
 from core.utils import Timer
-from keras.layers import Dense, Activation, Dropout, LSTM
+from keras.layers import Dense, Activation, Dropout, GRU
 from keras.models import Sequential, load_model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
+from keras.optimizers import Adam
 import matplotlib.pyplot as plt
 
 class Model():
-	"""LSTM model"""
+	"""GRU model"""
 
 	def __init__(self):
 		self.model = Sequential()
@@ -28,22 +29,20 @@ class Model():
 			dropout_rate = layer['rate'] if 'rate' in layer else None
 			activation = layer['activation'] if 'activation' in layer else None
 			return_seq = layer['return_seq'] if 'return_seq' in layer else None
-			input_timesteps = layer['input_timesteps'] if 'input_timesteps' in layer else None
-			input_dim = layer['input_dim'] if 'input_dim' in layer else None
 
 			if layer['type'] == 'dense':
 				self.model.add(Dense(neurons, activation=activation))
-			if layer['type'] == 'lstm':
-				self.model.add(LSTM(neurons, input_shape=(input_timesteps, input_dim), return_sequences=return_seq))
+			if layer['type'] == 'gru':
+				self.model.add(GRU(neurons, return_sequences=return_seq))
 			if layer['type'] == 'dropout':
 				self.model.add(Dropout(dropout_rate))
 
-		self.model.compile(loss=configs['model']['loss'], optimizer=configs['model']['optimizer'])
+		self.model.compile(loss=configs['model']['loss'], optimizer=Adam(0.001))
 
 		print('[Model] Model Compiled')
 		timer.stop()
 
-		print(self.model.summary())
+		# print(self.model.summary())
 		
 		return self.model
 		
@@ -64,13 +63,14 @@ class Model():
 			y,
 			epochs=epochs,
 			batch_size=batch_size,
-			callbacks=callbacks,
-			validation_split=0.1
+			validation_split=0.2
 		)
-		# self.model.save(save_fname)
+		self.model.save(save_fname)
 
 		print('[Model] Training Completed. Model saved as %s' % save_fname)
 		timer.stop()
+
+		print(self.model.summary())
 
 		# Plotting the loss
 		plt.plot(history.history['loss'])
