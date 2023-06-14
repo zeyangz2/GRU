@@ -1,5 +1,5 @@
-# LSTM
-train LSTM with stroke therapist and patient data
+# GRU
+train GRU mdoel with stroke therapist and patient data
 
 We collected some sample data in file trial2.csv to train the network.
 
